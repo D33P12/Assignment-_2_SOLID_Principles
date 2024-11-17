@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour ,IScoreSystem
 { 
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameCanvas;
     public static GameManager Instance { get; private set; }
-    private int Health = 100;
-    private int Coins = 0;
-    private int score = 0;
+    private int _health = 100;
+    private int _coins = 0;
+    private int _score = 0;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,30 +21,59 @@ public class GameManager : MonoBehaviour ,IScoreSystem
     }
     public void AddScore(int amount)
     {
-        score += amount; 
+        _score += amount; 
     }
     public void AddCoin()
     {
-        Coins++;                
+        _coins++;                
         AddScore(10);
-        Debug.Log($"Score added: {score} : Total Coins: {Coins}");
+        Debug.Log($"Score added: {_score} : Total Coins: {_coins}");
     }
     public int GetScore()
     {
-        return score;
+        return _score;
     }
     public void DecreaseHealth(int amount)
     {
-        Health -= amount;
-        Debug.Log($"Health: {Health}");
-        if (Health <= 0)
+        _health -= amount;
+        Debug.Log($"Health: {_health}");
+        if (_health <= 0)
         {
-            Debug.Log("Player is dead.");
+            GameOver();
         }
     }
     public void IncreaseHealth(int amount)
     {
-        Health += amount;
-        Debug.Log($"Health: {Health}");
+        _health += amount;
+        Debug.Log($"Health: {_health}");
+    }
+    public void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f; 
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true); 
+        }
+        Debug.Log("Game Over");
+    }
+    public void GameComplete()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f; 
+        if (gameCanvas != null)
+        {
+            gameCanvas.SetActive(true); 
+        }
+        Debug.Log("Game Over");
+    }
+    public void RestartGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+         _health = 100;
+         _score = 0;
+         _coins = 0;
     }
 }
