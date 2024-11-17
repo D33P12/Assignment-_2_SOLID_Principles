@@ -1,6 +1,7 @@
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
+    public int Health { get; set; } = 100;
     public static GameManager Instance { get; private set; }
     public int Coins { get; private set; } = 0;
     private void Awake()
@@ -19,4 +20,14 @@ public class GameManager : MonoBehaviour
         Coins++;
         Debug.Log(Coins);
     }
+    public void DecreaseHealth(int amount)
+    {
+        Health -= amount;
+        Debug.Log(Health);
+        if (Health <= 0)
+        {
+            Debug.Log("Player is dead.");
+        }
+    }
+    
 }
