@@ -6,15 +6,7 @@ public class DoorController : MonoBehaviour
     public void ToggleDoor()
     {
         _isOpen = !_isOpen;
-        if (_isOpen)
-        {
-            Debug.Log("Open.");
-            transform.position += Vector3.up * doorMoveRange;
-        }
-        else
-        {
-            Debug.Log("Closed.");
-            transform.position -= Vector3.up * doorMoveRange;
-        }
+        transform.position += (_isOpen ? Vector3.up : Vector3.down) * doorMoveRange;
+        Debug.Log(_isOpen ? "Door Opened" : "Door Closed");
     }
 }

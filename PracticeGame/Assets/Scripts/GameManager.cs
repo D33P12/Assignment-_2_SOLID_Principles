@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour ,IScoreSystem
     public void AddScore(int amount)
     {
         _score += amount; 
+        Debug.Log($"Score added: {_score}");
     }
     public void AddCoin()
     {
@@ -29,10 +30,7 @@ public class GameManager : MonoBehaviour ,IScoreSystem
         AddScore(10);
         Debug.Log($"Score added: {_score} : Total Coins: {_coins}");
     }
-    public int GetScore()
-    {
-        return _score;
-    }
+    public int GetScore() => _score;
     public void DecreaseHealth(int amount)
     {
         _health -= amount;
@@ -51,29 +49,23 @@ public class GameManager : MonoBehaviour ,IScoreSystem
     {
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f; 
-        if (gameOverCanvas != null)
-        {
-            gameOverCanvas.SetActive(true); 
-        }
+        gameOverCanvas?.SetActive(true);
         Debug.Log("Game Over");
     }
     public void GameComplete()
     {
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f; 
-        if (gameCanvas != null)
-        {
-            gameCanvas.SetActive(true); 
-        }
-        Debug.Log("Game Over");
+        gameCanvas?.SetActive(true);
+        Debug.Log("Game complete");
     }
     public void RestartGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
-         _health = 100;
-         _score = 0;
-         _coins = 0;
+        _health = 100;
+        _score = 0;
+        _coins = 0;
     }
 }
