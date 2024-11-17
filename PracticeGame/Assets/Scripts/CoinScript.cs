@@ -1,8 +1,14 @@
-public class CoinScript : InteractFoundation
+using UnityEngine;
+public class CoinScript :MonoBehaviour, IInteractable
 {
-    public override void Interact(GameManager gameManager)
+    private IScoreSystem _scoreSystem;
+    private void Start()
     {
-        GameManager.Instance.AddCoin();
-        Destroy(gameObject);
+        _scoreSystem = GameManager.Instance; 
+    }
+    public void Interact()
+    { 
+        GameManager.Instance.AddCoin(); 
+        Destroy(gameObject);            
     }
 }

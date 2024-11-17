@@ -1,13 +1,15 @@
 using UnityEngine;
-
 public class InteractionDone : MonoBehaviour
 {
-    public GameManager gameManager;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<InteractFoundation>(out var interactable))
+        if (other.TryGetComponent<IInteractable>(out var interactable))
         {
-            interactable.Interact(gameManager);
+            interactable.Interact();
+        }
+        else if (other.TryGetComponent<InteractFoundation>(out var interactableFoundation))
+        {
+            interactableFoundation.Interact(GameManager.Instance);
         }
     }
 }
