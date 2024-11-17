@@ -11,4 +11,6 @@ public class CoinScript :MonoBehaviour, IInteractable
         GameManager.Instance.AddCoin(); 
         Destroy(gameObject);            
     }
+    //Liskov Substitution: Uses IInteractable for interaction.
+    //Dependency Inversion: Depends on GameManager interface.
 }

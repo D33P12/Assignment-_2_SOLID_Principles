@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour ,IScoreSystem
 { 
+    //Single Responsibility: Manages game state like health, score, coins, game over/completion.
+    //Interface Segregation: Implements IScoreSystem for score-related things.
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject gameCanvas;
     public static GameManager Instance { get; private set; }

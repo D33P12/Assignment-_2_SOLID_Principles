@@ -19,4 +19,6 @@ public class PlayerController : MonoBehaviour
             transform.Translate(moveDirection.normalized * (moveSpeed * Time.deltaTime), Space.World);
         }
     }
+    //Single Responsibility: Handles player movement.
+    //Open-Closed: New movement mechanics can be added.
 }
