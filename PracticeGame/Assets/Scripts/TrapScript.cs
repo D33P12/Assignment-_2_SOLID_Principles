@@ -1,4 +1,3 @@
-using UnityEngine;
 public class TrapScript : InteractFoundation
 {
     public int damage = 15;

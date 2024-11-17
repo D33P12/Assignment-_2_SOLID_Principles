@@ -18,16 +18,20 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         Coins++;
-        Debug.Log(Coins);
+        Debug.Log($"Coins:{Coins}");
     }
     public void DecreaseHealth(int amount)
     {
         Health -= amount;
-        Debug.Log(Health);
+        Debug.Log($"Health: {Health}");
         if (Health <= 0)
         {
             Debug.Log("Player is dead.");
         }
     }
-    
+    public void IncreaseHealth(int amount)
+    {
+        Health += amount;
+        Debug.Log($"Health: {Health}");
+    }
 }

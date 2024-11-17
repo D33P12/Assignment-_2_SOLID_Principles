@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class CoinScript : InteractFoundation
 {
     public override void Interact(GameManager gameManager)
